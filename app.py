@@ -3,12 +3,12 @@ import streamlit as st
 from data import new_df,similarity
 import pandas as pd
 import requests
-
+@st.catch
 def fetch_poster(movie_id):
     data = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}?api_key=925f5abb87a3e487dda2cdd5babea3b8&language=en-US').json()
     return "https://image.tmdb.org/t/p/w500/"+data['poster_path']
     
-
+@st.catch
 def recommend(movie):
     movie_index = movies[movies['title'] == movie].index[0]
     distance = similarity[movie_index]
