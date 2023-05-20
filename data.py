@@ -4,16 +4,16 @@ import ast
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
+import streamlit as st
 cv = CountVectorizer(max_features=5000,stop_words='english')
 ps = PorterStemmer()
-
+@st.catch
 def convert(obj):
     l = []
     for i in ast.literal_eval(obj):
         l.append(i['name'])
     return l
-
+@st.catch
 def convert3(obj):
     l = []
     counter = 0
@@ -24,7 +24,7 @@ def convert3(obj):
         else :
             break
     return l
-
+@st.catch
 def fetch_directors(obj):
     l = []
     for i in ast.literal_eval(obj):
@@ -62,7 +62,7 @@ new_df = movies[['movie_id','title','tag']]
 new_df['tag'] = new_df['tag'].apply(lambda x:" ".join(x))
 
 new_df['tag'] = new_df['tag'].apply(lambda x:x.lower())
-
+@st.catch
 def stem(text):
     l = []
     for i in text.split():
